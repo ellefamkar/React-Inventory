@@ -4,20 +4,23 @@ function CategoryForm() {
   const [isShown, setIsShown] = useState(false);
   const [categoryFormData, setCategoryFormData] = useState({
     title: "",
-    description: ""
+    description: "",
   });
   const [categories, setCategories] = useState([]);
 
-  const changeHandler = ({target}) => {
-    const {name, value} = target;
-    setCategoryFormData({...categoryFormData, [name] : value})
+  const changeHandler = ({ target }) => {
+    const { name, value } = target;
+    setCategoryFormData({ ...categoryFormData, [name]: value });
   };
 
-  const addNewCategoryHandler = (e) =>{
+  const addNewCategoryHandler = (e) => {
     e.preventDefault();
-    setCategories([...categories, {...categoryFormData, createdAt: new Date().toISOString()}])
-
-  }
+    setCategories([
+      ...categories,
+      { ...categoryFormData, createdAt: new Date().toISOString() },
+    ]);
+    setCategoryFormData({ title: "", description: "" });
+  };
 
   return (
     <>
@@ -35,10 +38,7 @@ function CategoryForm() {
           </h2>
           <form className="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">
             <div className="text-left">
-              <label
-                htmlFor="title"
-                className="block mb-1 text-slate-400"
-              >
+              <label htmlFor="title" className="block mb-1 text-slate-400">
                 Title
               </label>
               <input
