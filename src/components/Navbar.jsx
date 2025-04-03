@@ -7,7 +7,7 @@ function Navbar() {
         Inventory App using Tailwind and React
       </h1>
       <span className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 border-2 border-slate-300 font-bold text-slate-300">
-        *
+        7
       </span>
     </div>
   );

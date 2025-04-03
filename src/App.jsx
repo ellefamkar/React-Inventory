@@ -1,7 +1,8 @@
+import { useState } from "react";
 import "./App.css";
-import CategoryForm from "./components/Categories";
+import CategoryForm from "./components/CategoriesForm";
 import Navbar from "./components/Navbar";
-import Products from "./components/Products";
+import ProductsForm from "./components/ProductsForm";
 
 // const products = [
 //   {
@@ -41,13 +42,16 @@ import Products from "./components/Products";
 // ];
 
 function App() {
+  const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+  console.log(products);
+
   return (
     <div className="bg-slate-800 min-h-screen">
       <Navbar />
       <div className="container max-w-screen-sm mx-auto p-4">
-        <CategoryForm />
-
-        <Products />
+        <CategoryForm setCategories={setCategories} />
+        <ProductsForm categories={categories} setProducts={setProducts} />
       </div>
     </div>
   );
@@ -55,6 +59,7 @@ function App() {
 
 export default App;
 
+// Roadmap note fore users
 // 1. install vite-react
 // 2. install tailwindcss
 // 3. install extension = tailwind css intellicence
