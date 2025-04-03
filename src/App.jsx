@@ -3,6 +3,7 @@ import "./App.css";
 import CategoryForm from "./components/CategoriesForm";
 import Navbar from "./components/Navbar";
 import ProductsForm from "./components/ProductsForm";
+import ProductList from "./components/ProductList";
 
 // const products = [
 //   {
@@ -44,7 +45,6 @@ import ProductsForm from "./components/ProductsForm";
 function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
-  console.log(products);
 
   return (
     <div className="bg-slate-800 min-h-screen">
@@ -52,6 +52,7 @@ function App() {
       <div className="container max-w-screen-sm mx-auto p-4">
         <CategoryForm setCategories={setCategories} />
         <ProductsForm categories={categories} setProducts={setProducts} />
+        <ProductList products={products} setProducts={setProducts} categories={categories} />
       </div>
     </div>
   );
@@ -67,3 +68,6 @@ export default App;
 // --> what is our data flow? products + categories => we need form
 // --> storage
 // --> context API ?
+// 5. Add Categories Form and handle it
+// 6. Add Products Form using categories id
+// 
