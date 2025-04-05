@@ -2,7 +2,11 @@ import React from "react";
 
 function ProductList({ products, categories, setProducts }) {
   const findCategoryTitle = (categoryId) => {
-    return categories.find((c) => c.id === parseInt(categoryId)).title;
+    if (categories) {
+      const foundCategory = categories.find((c) => c.id === parseInt(categoryId));
+      return foundCategory ? foundCategory.title : "Unknown Category";
+    }
+    return "Unknown Category";
   };
 
   const deleteProduct = (id) => {
@@ -10,7 +14,6 @@ function ProductList({ products, categories, setProducts }) {
     setProducts(filteredProducts);
   };
 
-  console.log(products, categories);
   return (
     <>
       <h2 className="mt-8 mb-4 text-xl text-slate-300 font-bold">
@@ -29,7 +32,7 @@ function ProductList({ products, categories, setProducts }) {
                   {new Date(product.createdAt).toLocaleDateString("en-EN")}
                 </span>
                 <span className="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-2xl">
-                  {findCategoryTitle(product.categoryId)}
+                  {product.categoryId && findCategoryTitle(product.categoryId)}
                 </span>
                 <span className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 border-2 border-slate-300 text-slate-300">
                   {product.quantity}

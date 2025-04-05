@@ -87,7 +87,7 @@ function ProductsForm({ categories, setProducts }) {
             type="submit"
             className="bg-slate-400 text-white rounded-xl border-0 w-full md:w-1/2 p-2 cursor-pointer transition hover:translate-y-0.5"
           >
-            Add Product
+            Add Product  
           </button>
         </div>
       </form>

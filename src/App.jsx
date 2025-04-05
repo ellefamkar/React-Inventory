@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import ProductsForm from "./components/ProductsForm";
 import ProductList from "./components/ProductList";
 import Filter from "./components/Filter";
+import RemoveCategories from "./components/RemoveCategories";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,7 @@ function App() {
   const [sort, setSort] = useState("latest");
   const [searchValue, setSearchValue] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [isInitialized, setIsInitialized] = useState(false);
 
   const searchHandler = (e) => {
     setSearchValue(e.target.value.trim().toLowerCase());
@@ -57,23 +59,23 @@ function App() {
 
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-    const savedCategories =
-      JSON.parse(localStorage.getItem("categories")) || [];
+    const savedCategories = JSON.parse(localStorage.getItem("categories")) || [];
     setProducts(savedProducts);
     setCategories(savedCategories);
+    setIsInitialized(true);
   }, []);
 
   useEffect(() => {
-    if (products.length) {
+    if (isInitialized) {
       localStorage.setItem("products", JSON.stringify(products));
     }
-  }, [products]);
+  }, [products, isInitialized]);
 
   useEffect(() => {
-    if (categories.length) {
+    if (isInitialized) {
       localStorage.setItem("categories", JSON.stringify(categories));
     }
-  }, [categories]);
+  }, [categories, isInitialized]);
 
   return (
     <div className="bg-slate-800 min-h-screen">
@@ -94,6 +96,10 @@ function App() {
           categories={categories}
         />
         <CategoryForm setCategories={setCategories} />
+        <RemoveCategories
+          categories={categories}
+          setCategories={setCategories}
+        />
         <ProductsForm categories={categories} setProducts={setProducts} />
       </div>
     </div>
