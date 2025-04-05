@@ -37,12 +37,12 @@ In his project you should be able to:
 
 ### Screenshot
 
-![](src/assets/images/Note-app-desktop.png)
-![](src/assets/images/Note-app-mobile.png)
+![](public/images/desktop.png)
+![](public/images/mobile.png)
 
 ### Links
 
-- Live Site URL: [Notes App](https://notes-app-elle.netlify.app/)
+- Live Site URL: [Inventory App](https://react-inventory-elle-famkar.netlify.app/)
 
 ## My process
 

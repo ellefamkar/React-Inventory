@@ -21,7 +21,7 @@ function ProductList({ products, categories, setProducts }) {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex items-center justify-between mb-2 w-full min-w-[400px]"
+              className="flex items-center justify-between mb-2 w-full border border-slate-500 rounded-xl  p-2 min-w-[400px]"
             >
               <span className="text-slate-400">{product.title}</span>
               <div className="flex items-center gap-x-3">
@@ -36,7 +36,7 @@ function ProductList({ products, categories, setProducts }) {
                 </span>
                 <button
                   onClick={() => deleteProduct(product.id)}
-                  className="cursor-pointer border px-2 py-0.5 rounded-2xl border-red-400 text-red-400 delete-product"
+                  className="cursor-pointer border px-2 py-0.5 rounded-xl border-red-400 text-red-400 delete-product"
                 >
                   delete
                 </button>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import CategoryForm from "./components/CategoriesForm";
 import Navbar from "./components/Navbar";
 import ProductsForm from "./components/ProductsForm";
