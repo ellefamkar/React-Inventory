@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import CategoryForm from "./components/CategoriesForm";
 import Navbar from "./components/Navbar";
 import ProductsForm from "./components/ProductsForm";
 import ProductList from "./components/ProductList";
+import Filter from "./components/Filter";
 
 // const products = [
 //   {
@@ -45,6 +46,52 @@ import ProductList from "./components/ProductList";
 function App() {
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sort, setSort] = useState("latest");
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const searchHandler = (e) => {
+    setSearchValue(e.target.value.trim().toLowerCase());
+  };
+
+  const filterSearchTitle = (array) => {
+    return array.filter((p) => p.title.toLowerCase().includes(searchValue));
+  };
+
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
+
+  const sortDate = (array) => {
+    let sortedProducts = [...array];
+    return sortedProducts.sort((a, b) => {
+      if (sort === "earliest") {
+        return new Date(a.createdAt) > new Date(b.createdAt) ? -1 : 1;
+      } else if (sort === "latest") {
+        return new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1;
+      }
+    });
+  };
+
+  const selectCategoryHandler = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  const fileterdSelectedCategory = (array) => {
+    if(!selectedCategory) return array;
+    return array.filter((item) => item.categoryId === selectedCategory )
+  }
+
+  useEffect(() => {
+    //sortFilter
+    //titleFilter, etc...
+    let result = products;
+    result = filterSearchTitle(result);
+    result = sortDate(result);
+    result = setFilteredProducts(result);
+    fileterdSelectedCategory(result)
+  }, [products, sort, searchValue, selectedCategory]);
 
   return (
     <div className="bg-slate-800 min-h-screen">
@@ -52,7 +99,20 @@ function App() {
       <div className="container max-w-screen-sm mx-auto p-4">
         <CategoryForm setCategories={setCategories} />
         <ProductsForm categories={categories} setProducts={setProducts} />
-        <ProductList products={products} setProducts={setProducts} categories={categories} />
+        <Filter
+          sort={sort}
+          searchValue={searchValue}
+          onSort={sortHandler}
+          onSearch={searchHandler}
+          selectedCategory={selectedCategory}
+          onSelectedCategory={selectCategoryHandler}
+          categories={categories}
+        />
+        <ProductList
+          products={filteredProducts}
+          setProducts={setProducts}
+          categories={categories}
+        />
       </div>
     </div>
   );
@@ -70,4 +130,5 @@ export default App;
 // --> context API ?
 // 5. Add Categories Form and handle it
 // 6. Add Products Form using categories id
-// 
+// 7. Add Product List and show created products
+// 8. Filter on products
