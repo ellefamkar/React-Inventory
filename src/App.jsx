@@ -79,26 +79,44 @@ function App() {
   };
 
   const fileterdSelectedCategory = (array) => {
-    if(!selectedCategory) return array;
-    return array.filter((item) => item.categoryId === selectedCategory )
-  }
+    if (!selectedCategory) return array;
+    return array.filter((item) => item.categoryId === selectedCategory);
+  };
 
   useEffect(() => {
     //sortFilter
     //titleFilter, etc...
     let result = products;
     result = filterSearchTitle(result);
+    result = fileterdSelectedCategory(result);
     result = sortDate(result);
-    result = setFilteredProducts(result);
-    fileterdSelectedCategory(result)
+    setFilteredProducts(result);
   }, [products, sort, searchValue, selectedCategory]);
+
+  useEffect(() => {
+    const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
+    const savedCategories =
+      JSON.parse(localStorage.getItem("categories")) || [];
+    setProducts(savedProducts);
+    setCategories(savedCategories);
+  }, []);
+
+  useEffect(() => {
+    if (products.length) {
+      localStorage.setItem("products", JSON.stringify(products));
+    }
+  }, [products]);
+
+  useEffect(() => {
+    if (categories.length) {
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
+  }, [categories]);
 
   return (
     <div className="bg-slate-800 min-h-screen">
-      <Navbar />
+      <Navbar productsLength={products.length} />
       <div className="container max-w-screen-sm mx-auto p-4">
-        <CategoryForm setCategories={setCategories} />
-        <ProductsForm categories={categories} setProducts={setProducts} />
         <Filter
           sort={sort}
           searchValue={searchValue}
@@ -113,6 +131,8 @@ function App() {
           setProducts={setProducts}
           categories={categories}
         />
+        <CategoryForm setCategories={setCategories} />
+        <ProductsForm categories={categories} setProducts={setProducts} />
       </div>
     </div>
   );

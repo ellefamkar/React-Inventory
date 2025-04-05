@@ -39,7 +39,7 @@ function CategoryForm({ setCategories }) {
         id="toggle-add-category"
         onClick={() => setIsShown(!isShown)}
         className={`*
-          text-slate-400 text-lg my-2 font-medium cursor-pointer flex items-center
+          text-slate-400 text-lg mb-2 mt-9 font-medium cursor-pointer flex items-center
           ${isShown && "hidden"}
           `}
       >
