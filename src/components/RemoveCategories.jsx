@@ -3,7 +3,7 @@ import React, { useState } from "react";
 function RemoveCategories({ categories, setCategories }) {
   const [isShown, setIsShown] = useState(false);
   const deleteCategory = (id) => {
-    const filteredCategories = categories.filter((c) => c.id !== parseInt(id))
+    const filteredCategories = categories.filter((c) => c.id !== parseInt(id));
     console.log(id);
     setCategories(filteredCategories);
   };
@@ -30,40 +30,46 @@ function RemoveCategories({ categories, setCategories }) {
           </h2>
           <div className="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">
             <div>
-              {categories && categories.map((category) => (
-                <div
-                  key={category.id}
-                  className="flex flex-col mb-3 w-full border border-slate-500 rounded-xl p-3 min-w-[400px]"
-                >
-                  <div className="flex justify-between">
-                    <span className="py-1 px-3 rounded-lg bg-slate-500 text-slate-300">
-                      {category.title}
-                    </span>
-                    <div>
-                      <span className="text-slate-400">
-                        {new Date(category.createdAt).toLocaleDateString(
-                          "en-EN"
-                        )}
+              {categories.length === 0 ? (
+                <p className="text-slate-400">
+                  No categories available. Add a category.
+                </p>
+              ) : (
+                categories.map((category) => (
+                  <div
+                    key={category.id}
+                    className="flex flex-col mb-3 w-full border border-slate-500 rounded-xl p-3 min-w-[400px]"
+                  >
+                    <div className="flex justify-between">
+                      <span className="py-1 px-3 rounded-lg bg-slate-500 text-slate-300">
+                        {category.title}
                       </span>
-                      <button
-                        onClick={() => deleteCategory(category.id)}
-                        className="cursor-pointer border ml-2 px-2 py-0.5 rounded-xl border-red-400 text-red-400 delete-product"
-                      >
-                        delete
-                      </button>
+                      <div>
+                        <span className="text-slate-400">
+                          {new Date(category.createdAt).toLocaleDateString(
+                            "en-EN"
+                          )}
+                        </span>
+                        <button
+                          onClick={() => deleteCategory(category.id)}
+                          className="cursor-pointer border ml-2 px-2 py-0.5 rounded-xl border-red-400 text-red-400 delete-product"
+                        >
+                          delete
+                        </button>
+                      </div>
                     </div>
+                    <p className="mt-3 mb-2 text-slate-300">
+                      {category.description}
+                    </p>
                   </div>
-                  <p className="mt-3 mb-2 text-slate-300">
-                    {category.description}
-                  </p>
-                </div>
-              ))}
+                ))
+              )}
             </div>
             <button
               onClick={() => setIsShown(false)}
               className="bg-transparent my-1 rounded-xl border border-slate-500 text-slate-400 w-full sm:w-1/2 mx-1 p-2 cursor-pointer transition hover:translate-y-0.5"
             >
-              Cancel
+              Close
             </button>
           </div>
         </div>
