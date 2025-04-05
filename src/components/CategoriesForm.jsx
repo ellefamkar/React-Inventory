@@ -87,7 +87,7 @@ function CategoryForm({ setCategories }) {
                 onClick={() => setIsShown(false)}
                 className="bg-transparent my-1 rounded-xl border border-slate-500 text-slate-400 w-full sm:w-1/2 mx-1 p-2 cursor-pointer transition hover:translate-y-0.5"
               >
-                Cancel
+                Close
               </button>
               <button
                 onClick={addNewCategoryHandler}
