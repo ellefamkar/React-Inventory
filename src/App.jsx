@@ -119,14 +119,16 @@ function App() {
 export default App;
 
 // Roadmap note fore users
-// 1. install vite-react
-// 2. install tailwindcss
+// 1. install vite-react : npm create vite@latest ./
+// 2. install tailwindcss : use Tailwind website
 // 3. install extension = tailwind css intellicence
 // 4. get inside the code:
 // --> what is our data flow? products + categories => we need form
 // --> storage
-// --> context API ?
+// --> context API ??
 // 5. Add Categories Form and handle it
-// 6. Add Products Form using categories id
-// 7. Add Product List and show created products
-// 8. Filter on products
+// 6. Add Section to remove categories
+// 7. Add Products Form having their categories id
+// 8. Add Product List and show created products
+// 9. Filter on products -> search value  + sort + category filter
+// 10. Add data to storage and save and get it
