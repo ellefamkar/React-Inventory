@@ -1,6 +1,9 @@
 import React from "react";
 
 function ProductList({ products, categories, setProducts }) {
+  
+  // we have the category id and based on that we find the category title
+  // and if no categories are chosen we consider unknown value for it
   const findCategoryTitle = (categoryId) => {
     if (categories) {
       const foundCategory = categories.find((c) => c.id === parseInt(categoryId));
@@ -9,6 +12,7 @@ function ProductList({ products, categories, setProducts }) {
     return "Unknown Category";
   };
 
+  // delete each product we want
   const deleteProduct = (id) => {
     const filteredProducts = products.filter((p) => p.id !== parseInt(id));
     setProducts(filteredProducts);
@@ -16,7 +20,7 @@ function ProductList({ products, categories, setProducts }) {
 
   return (
     <>
-      <h2 className="mt-8 mb-4 text-xl text-slate-300 font-bold">
+      <h2 className="mt-5 mb-4 text-xl text-slate-300 font-bold">
         Product List
       </h2>
       {products.length > 0 ? (
@@ -24,8 +28,7 @@ function ProductList({ products, categories, setProducts }) {
           {products.map((product) => (
             <div
               key={product.id}
-              className="flex items-center justify-between mb-2 w-full border border-slate-500 rounded-xl  p-2 min-w-[400px]"
-            >
+              className="flex items-center justify-between mb-2 w-full border border-slate-500 rounded-xl  p-2 min-w-[400px]" >
               <span className="text-slate-400">{product.title}</span>
               <div className="flex items-center gap-x-3">
                 <span className="text-slate-400">
@@ -48,7 +51,7 @@ function ProductList({ products, categories, setProducts }) {
           ))}
         </div>
       ) : (
-        <p className="text-slate-400">No products were addedd. Add some products to your basket.</p>
+        <p className="text-slate-400">🤷‍♀️ No products were found. Add products to your list.</p>
       )}
     </>
   );

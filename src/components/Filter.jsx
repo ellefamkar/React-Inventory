@@ -1,19 +1,15 @@
-function Filter({
-  sort,
-  searchValue,
-  onSort,
-  onSearch,
-  categories,
+function Filter({ sort, onSort, searchValue, onSearchValue, categories,
   selectedCategory,
   onSelectedCategory,
 }) {
+
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        
+        {/* search bar  */}
         <input
           value={searchValue}
-          onChange={onSearch}
+          onChange={onSearchValue}
           type="text"
           name="search-input"
           id="search-input"
@@ -22,32 +18,33 @@ function Filter({
         />
       </div>
       <div className="flex flex-col md:flex-row justify-between items-center">
-        <div className="flex items-center justify-between w-full md:w-1/2 mb-6">
-          <label htmlFor="sort-products" className="text-slate-500 text-lg mr-4">
+        <div className="flex items-center justify-between w-full md:w-1/2 mb-4">
+          {/* <label htmlFor="sort-products" className="text-slate-500 text-lg mr-4">
             Sort
-          </label>
+          </label> */}
+          {/* sort */}
           <select
             value={sort}
             onChange={onSort}
             name="sort-products"
             id="sort-products"
-            className="cursor-pointer bg-transparent flex-1 px-2 py-1 border border-slate-500 text-slate-400 rounded-xl"
-          >
-            <option className="bg-slate-500 text-slate-300" value="">
+            className="cursor-pointer bg-transparent flex-1 px-2 py-1 border border-slate-500 text-slate-400 rounded-xl" >
+            <option className="bg-slate-500 text-slate-300 px-3" value="">
               Select a category
             </option>
-            <option className="bg-slate-500 text-slate-300" value="latest">
+            <option className="bg-slate-500 text-slate-300  px-3" value="latest">
               Latest
             </option>
-            <option className="bg-slate-500 text-slate-300" value="earliest">
+            <option className="bg-slate-500 text-slate-300  px-3" value="earliest">
               Earliest
             </option>
           </select>
         </div>
-        <div className="flex items-center justify-between w-full md:w-1/2 mb-6 md:ml-4">
-          <label htmlFor="sort-products" className="text-slate-500 text-lg mr-4">
+        <div className="flex items-center justify-between w-full md:w-1/2 mb-4 md:ml-4">
+          {/* <label htmlFor="sort-products" className="text-slate-500 text-lg mr-4">
             Category
-          </label>
+          </label> */}
+          {/* Category  */}
           <select
             value={selectedCategory}
             onChange={onSelectedCategory}
@@ -56,7 +53,7 @@ function Filter({
             className="cursor-pointer flex-1 bg-transparent border border-slate-500 text-slate-400 px-2 py-1 rounded-xl"
           >
             <option className="bg-slate-500 text-slate-300" value="">
-              All
+              All Categories
             </option>
             {categories.map((cat) => (
               <option

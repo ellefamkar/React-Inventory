@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 
 function ProductsForm({ categories, setProducts }) {
+  // prodcts data inserted in form
   const [productData, setProductdata] = useState({
     title: "",
     quantity: 0,
     categoryId: "",
   });
 
+  // handle changes in the values of the form
   const changeHandler = (e) => {
     const {name, value} = e.target
     setProductdata({...productData, [name]: value});
   };
 
+  // add new products while maintaining previous data and also adding category to the product to check which category it has
   const addNewProductHandler = (e) => {
     e.preventDefault();
     const newProduct = {
@@ -21,7 +24,6 @@ function ProductsForm({ categories, setProducts }) {
     }
     setProducts((prevState) => [...prevState, newProduct]);
     setProductdata({title: "", quantity: 0, categoryId: ""})
-
   }
 
   return (
@@ -38,8 +40,7 @@ function ProductsForm({ categories, setProducts }) {
             type="text"
             name="title"
             id="title"
-            className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full p-2 shadow"
-          />
+            className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full p-2 shadow" />
         </div>
         <div className="text-left">
           <label htmlFor="quantity" className="block mb-1 text-slate-400">
@@ -51,8 +52,7 @@ function ProductsForm({ categories, setProducts }) {
             className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full p-2"
             type="number"
             name="quantity"
-            id="quantity"
-          />
+            id="quantity" />
         </div>
         <div className="text-left">
           <label htmlFor="categoryId" className="block mb-1 text-slate-400">
@@ -63,8 +63,7 @@ function ProductsForm({ categories, setProducts }) {
             onChange={changeHandler}
             className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full md:w-full p-2"
             name="categoryId"
-            id="categoryId"
-          >
+            id="categoryId" >
             <option className="bg-slate-500 text-slate-300" value="">
               Select a category
             </option>
@@ -73,9 +72,8 @@ function ProductsForm({ categories, setProducts }) {
                 <option
                   key={item.id}
                   className="bg-slate-500 text-slate-300"
-                  value={item.id}
-                >
-                  {item.title}
+                  value={item.id} >
+                    {item.title}
                 </option>
               );
             })}
@@ -85,8 +83,7 @@ function ProductsForm({ categories, setProducts }) {
           <button
             onClick={addNewProductHandler}
             type="submit"
-            className="bg-slate-400 text-white rounded-xl border-0 w-full md:w-1/2 p-2 cursor-pointer transition hover:translate-y-0.5"
-          >
+            className="bg-slate-400 text-white rounded-xl border-0 w-full md:w-1/2 p-2 cursor-pointer transition hover:translate-y-0.5" >
             Add Product  
           </button>
         </div>

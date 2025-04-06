@@ -7,14 +7,17 @@ import Filter from "./components/Filter";
 import RemoveCategories from "./components/RemoveCategories";
 
 function App() {
-  const [categories, setCategories] = useState([]);
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sort, setSort] = useState("latest");
+  const [categories, setCategories] = useState([]); // add, delete, set Categories
+  const [products, setProducts] = useState([]); // add in product form, delete, show products
+  // filter and finally show filtered products
   const [searchValue, setSearchValue] = useState("");
+  const [sort, setSort] = useState("latest");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  // to check localstorage.getItem
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // search handler and filter ---------
   const searchHandler = (e) => {
     setSearchValue(e.target.value.trim().toLowerCase());
   };
@@ -23,6 +26,7 @@ function App() {
     return array.filter((p) => p.title.toLowerCase().includes(searchValue));
   };
 
+  // sort handler and filter ----------
   const sortHandler = (e) => {
     setSort(e.target.value);
   };
@@ -38,6 +42,7 @@ function App() {
     });
   };
 
+  // filter based on what category it chooses
   const selectCategoryHandler = (e) => {
     setSelectedCategory(e.target.value);
   };
@@ -47,6 +52,7 @@ function App() {
     return array.filter((item) => item.categoryId === selectedCategory);
   };
 
+  // now we use useEffect to handle changes in renders based on their dependencies
   useEffect(() => {
     //sortFilter
     //titleFilter, etc...
@@ -55,22 +61,26 @@ function App() {
     result = fileterdSelectedCategory(result);
     result = sortDate(result);
     setFilteredProducts(result);
-  }, [products, sort, searchValue, selectedCategory]);
+  }, [products, searchValue, sort, selectedCategory]);
 
+  // To get products and categories from local storage and say we got it
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
-    const savedCategories = JSON.parse(localStorage.getItem("categories")) || [];
+    const savedCategories =
+      JSON.parse(localStorage.getItem("categories")) || [];
     setProducts(savedProducts);
     setCategories(savedCategories);
     setIsInitialized(true);
   }, []);
 
+  // to save products in local storage after we are sure we have already received the existing ones
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem("products", JSON.stringify(products));
     }
   }, [products, isInitialized]);
 
+  // to save categories in local storage after we are sure we have already received the existing ones
   useEffect(() => {
     if (isInitialized) {
       localStorage.setItem("categories", JSON.stringify(categories));
@@ -85,7 +95,7 @@ function App() {
           sort={sort}
           searchValue={searchValue}
           onSort={sortHandler}
-          onSearch={searchHandler}
+          onSearchValue={searchHandler}
           selectedCategory={selectedCategory}
           onSelectedCategory={selectCategoryHandler}
           categories={categories}
