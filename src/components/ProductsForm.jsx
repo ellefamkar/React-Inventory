@@ -27,8 +27,8 @@ function ProductsForm({ categories, setProducts }) {
   }
 
   return (
-    <div className="my-6">
-      <h2 className="text-xl text-slate-300 font-bold mb-2">Add New Product</h2>
+    <div className="my-7">
+      <h2 className="text-xl text-slate-300 font-bold mb-4">Add New Product</h2>
       <form className="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">
         <div className="text-left">
           <label htmlFor="title" className="block mb-1 text-slate-400">

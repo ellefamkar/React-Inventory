@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function RemoveCategories({ categories, setCategories }) {
   // To show or hide the remove category box
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
 
   // To delete a category checking by its id
   const deleteCategory = (id) => {
@@ -24,8 +24,8 @@ function RemoveCategories({ categories, setCategories }) {
         Remove Category
       </button>
       {isShown && (
-        <div className="my-6" id="category-wrapper">
-          <h2 className="text-xl text-slate-300 font-bold mb-3">
+        <div className="my-7" id="category-wrapper">
+          <h2 className="text-xl text-slate-300 font-bold mb-4">
             Remove Category
           </h2>
           <div className="bg-slate-700 p-4 rounded-xl flex flex-col gap-y-4">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 function CategoryForm({ setCategories }) {
   // To show Add Cat btn or hide it
-  const [isShown, setIsShown] = useState(false);
+  const [isShown, setIsShown] = useState(true);
 
   // to handle form data
   const [categoryFormData, setCategoryFormData] = useState({
@@ -44,7 +44,7 @@ function CategoryForm({ setCategories }) {
       <button
         onClick={() => setIsShown(!isShown)}
         className={`
-          text-slate-400 text-lg mb-2 mt-10 font-medium cursor-pointer flex items-center
+          text-slate-400 text-lg mb-6 mt-7 font-medium cursor-pointer flex items-center
           ${isShown && "hidden"} `} >
         <span className="bg-slate-800 font-bold flex items-center justify-center text-center align-middle border-1 text-slate-400 border-slate-400 w-5 h-5 rounded-full pb-1 mr-2">
           +
