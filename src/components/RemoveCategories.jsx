@@ -38,7 +38,7 @@ function RemoveCategories({ categories, setCategories }) {
                 categories.map((category) => (
                   <div
                     key={category.id}
-                    className="flex flex-col mb-3 w-full border border-slate-500 rounded-xl p-3 min-w-[400px]" >
+                    className="flex flex-col mb-3 w-full border border-slate-500 rounded-xl p-3 min-w-full" >
                     <div className="flex justify-between">
                       <span className="py-1 px-3 rounded-lg bg-slate-500 text-slate-300">
                         {category.title}
